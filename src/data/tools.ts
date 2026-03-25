@@ -66,7 +66,7 @@ export const tools: Tool[] = [
     tagline: 'PI3K pathway classification for CRC aspirin eligibility',
     description:
       'Classify PI3K pathway alterations in colorectal cancer to determine eligibility for adjuvant aspirin therapy per the ALASCCA trial (Martling et al., NEJM 2025). Covers Group A (PIK3CA hotspots) and Group B (PIK3CA, PIK3R1, PTEN) alterations.',
-    url: 'https://alassca-classify.molpath.tools/',
+    url: 'https://alascca-classify.molpath.tools/',
     github: 'https://github.com/viktorlj/alascca-classify',
     category: 'Colorectal cancer',
     status: 'live',
