@@ -45,6 +45,7 @@
 
 .tools-section {
   margin-top: var(--mp-space-sm);
+  text-align: center;
 }
 
 .tools-grid {
