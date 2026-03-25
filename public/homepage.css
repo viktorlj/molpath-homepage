@@ -1,0 +1,172 @@
+/*  homepage.css — app-specific styles for molpath.tools landing page
+ *  Builds on top of molpath.css design tokens.
+ */
+
+/* ---- Hero ---- */
+
+.hero {
+  text-align: center;
+  padding: var(--mp-space-xl) var(--mp-space-lg);
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mp-space-md);
+}
+
+.hero-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.hero h1 {
+  font-size: var(--mp-fs-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.hero h1 .accent {
+  color: var(--mp-accent);
+}
+
+.hero-lead {
+  margin: var(--mp-space-sm) auto 0;
+  max-width: 580px;
+  color: var(--mp-ink-soft);
+  font-size: var(--mp-fs-lg);
+  line-height: 1.55;
+}
+
+
+/* ---- Tool grid ---- */
+
+.tools-section {
+  margin-top: var(--mp-space-sm);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--mp-space-lg);
+  margin-top: var(--mp-space-md);
+}
+
+
+/* ---- Tool card ---- */
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mp-space-sm);
+  padding: var(--mp-space-lg);
+  text-decoration: none;
+  color: inherit;
+}
+
+.tool-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--mp-space-sm);
+  flex-wrap: wrap;
+}
+
+.tool-card-name {
+  font-size: var(--mp-fs-lg);
+  font-weight: 600;
+}
+
+.tool-card-pill {
+  font-family: var(--mp-mono);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--mp-bg-1);
+  color: var(--mp-ink-soft);
+  white-space: nowrap;
+}
+
+.tool-card-pill.status-live {
+  background: var(--mp-success-bg);
+  color: var(--mp-success-ink);
+}
+
+.tool-card-pill.status-beta {
+  background: var(--mp-warning-bg);
+  color: var(--mp-warning-ink);
+}
+
+.tool-card-pill.status-coming-soon {
+  background: var(--mp-info-bg);
+  color: var(--mp-info-ink);
+}
+
+.tool-card-tagline {
+  font-weight: 500;
+  color: var(--mp-accent);
+  font-size: var(--mp-fs-sm);
+}
+
+.tool-card-desc {
+  color: var(--mp-ink-soft);
+  font-size: var(--mp-fs-sm);
+  line-height: 1.55;
+}
+
+.tool-card-links {
+  display: flex;
+  gap: var(--mp-space-md);
+  margin-top: auto;
+  padding-top: var(--mp-space-xs);
+}
+
+.tool-card-links a {
+  font-size: var(--mp-fs-sm);
+  color: var(--mp-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--mp-transition);
+}
+
+.tool-card-links a:hover {
+  color: var(--mp-accent-hover);
+  text-decoration: underline;
+}
+
+
+/* ---- Footer ---- */
+
+.site-footer {
+  text-align: center;
+  padding: var(--mp-space-lg) var(--mp-space-md);
+  font-size: var(--mp-fs-sm);
+  color: var(--mp-ink-soft);
+}
+
+.site-footer a {
+  color: var(--mp-accent);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--mp-space-lg);
+  flex-wrap: wrap;
+  margin-bottom: var(--mp-space-sm);
+}
+
+
+/* ---- Responsive ---- */
+
+@media (max-width: 700px) {
+  .hero { padding: var(--mp-space-lg) var(--mp-space-md); }
+  .hero-icon { width: 36px; height: 36px; }
+  .tools-grid { grid-template-columns: 1fr; }
+}

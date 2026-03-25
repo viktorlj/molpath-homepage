@@ -1,0 +1,34 @@
+---
+import type { Tool } from '../data/tools';
+
+interface Props {
+  tool: Tool;
+  index?: number;
+}
+
+const { tool, index = 0 } = Astro.props;
+---
+
+<article class="mp-card tool-card mp-animate-in" style={`animation-delay: ${index * 80}ms`}>
+  <div class="tool-card-header">
+    <span class="tool-card-name">{tool.name}</span>
+    <span class={`tool-card-pill status-${tool.status}`}>
+      {tool.status === 'coming-soon' ? 'coming soon' : tool.status}
+    </span>
+    <span class="tool-card-pill">{tool.category}</span>
+  </div>
+
+  <div class="tool-card-tagline">{tool.tagline}</div>
+
+  <p class="tool-card-desc">{tool.description}</p>
+
+  <div class="tool-card-links">
+    <a href={tool.url} target="_blank" rel="noopener">Open tool →</a>
+    {tool.github && (
+      <a href={tool.github} target="_blank" rel="noopener">GitHub</a>
+    )}
+    {tool.manuscript && (
+      <a href={tool.manuscript} target="_blank" rel="noopener">Paper</a>
+    )}
+  </div>
+</article>
