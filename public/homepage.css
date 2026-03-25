@@ -50,6 +50,7 @@
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  max-width: 1080px;
   gap: var(--mp-space-lg);
   margin-top: var(--mp-space-md);
 }
