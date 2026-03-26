@@ -1,0 +1,199 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Tissue-of-Origin Classifier — molpath.tools"
+  description="Single-sample tissue-of-origin inference from panel sequencing data. Classifies 22 tumor types using an AutoGluon ensemble trained on AACR GENIE v18."
+>
+  <main class="mp-layout tool-page">
+    <!-- Back link -->
+    <nav class="tool-page-nav mp-animate-in">
+      <a href="/">← molpath.tools</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="tool-page-header mp-animate-in">
+      <div class="tool-page-pills">
+        <span class="tool-card-pill pill-kind-cli">CLI</span>
+        <span class="tool-card-pill">Cancer genomics</span>
+      </div>
+      <h1>Tissue-of-Origin Classifier</h1>
+      <p class="tool-page-tagline">
+        Single-sample tissue-of-origin inference using an AutoGluon ensemble trained on AACR GENIE v18 data.
+      </p>
+      <div class="tool-page-links">
+        <a href="https://github.com/viktorlj/tissue-classifier" target="_blank" rel="noopener" class="mp-btn">
+          GitHub →
+        </a>
+      </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Overview</h2>
+      <p>
+        Predict the tissue of origin for a tumor sample using somatic mutations,
+        copy-number alterations, structural variants, and clinical features.
+        The classifier integrates <strong>7 feature modalities</strong> into
+        <strong>4,320 engineered features</strong> and predicts across
+        <strong>22 tumor types</strong>.
+      </p>
+      <p>
+        Output is a self-contained HTML report with top-3 predictions,
+        full probability distributions, SHAP explanations, and a summary
+        of the input data.
+      </p>
+    </section>
+
+    <!-- Performance -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Performance</h2>
+      <div class="metric-grid">
+        <div class="metric">
+          <span class="metric-value">85.0%</span>
+          <span class="metric-label">Balanced accuracy</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">94.8%</span>
+          <span class="metric-label">Top-3 accuracy</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">22</span>
+          <span class="metric-label">Tumor types</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value">4,320</span>
+          <span class="metric-label">Features</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance figure -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Evaluation</h2>
+      <figure class="tool-page-figure">
+        <img
+          src="/tissue-classifier-performance.png"
+          alt="Model performance: (A) Per-class sensitivity across 22 tumor types, (B) Row-normalized confusion matrix, (C) Accuracy vs. coverage by confidence threshold, (D) External validation on GENIE holdout, UCSF, and MSK cohorts."
+          loading="lazy"
+        />
+        <figcaption>
+          <strong>(A)</strong> Per-class sensitivity on the held-out test set.
+          <strong>(B)</strong> Row-normalized confusion matrix.
+          <strong>(C)</strong> Top-1 accuracy and sample coverage as a function of confidence threshold.
+          <strong>(D)</strong> External validation on GENIE holdout, UCSF, and MSK Medical cohorts.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- Feature modalities -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Feature modalities</h2>
+      <ul class="feature-list">
+        <li>Somatic mutations (gene-level)</li>
+        <li>Copy-number alterations (arm &amp; gene-level)</li>
+        <li>Structural variants</li>
+        <li>SBS-6 mutation spectrum</li>
+        <li>Mutation frequency</li>
+        <li>TERT promoter status</li>
+        <li>Clinical features (age, sex)</li>
+      </ul>
+    </section>
+
+    <!-- Installation -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Installation</h2>
+      <p>Requires Python &ge; 3.11 and <code>uv</code>.</p>
+      <pre><code>git clone https://github.com/viktorlj/tissue-classifier.git
+cd tissue-classifier
+uv venv && uv sync</code></pre>
+    </section>
+
+    <!-- Usage -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Usage</h2>
+      <pre><code># Basic prediction
+tissue-classifier predict \
+    --maf sample.maf \
+    --seg sample.seg \
+    --age 65 --sex Male
+
+# With all options
+tissue-classifier predict \
+    --maf sample.maf \
+    --seg sample.seg \
+    --age 65 --sex Male \
+    --genome hg19 \
+    --output ./results \
+    --sample-id PATIENT_001
+
+# Validate input files
+tissue-classifier validate --maf sample.maf --seg sample.seg
+
+# Show model info
+tissue-classifier info</code></pre>
+    </section>
+
+    <!-- Input files -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Input files</h2>
+
+      <h3>MAF <span class="input-required">(required)</span></h3>
+      <p>
+        Tab-delimited mutation annotation file with columns:
+        <code>Hugo_Symbol</code>, <code>Chromosome</code>,
+        <code>Start_Position</code>, <code>End_Position</code>,
+        <code>Reference_Allele</code>, <code>Tumor_Seq_Allele2</code>,
+        <code>Variant_Classification</code>, <code>Variant_Type</code>,
+        <code>Tumor_Sample_Barcode</code>.
+      </p>
+
+      <h3>SEG <span class="input-optional">(optional)</span></h3>
+      <p>
+        Copy-number segmentation file with columns:
+        <code>ID</code>, <code>chrom</code>, <code>loc.start</code>,
+        <code>loc.end</code>, <code>seg.mean</code>.
+      </p>
+
+      <h3>SV <span class="input-optional">(optional)</span></h3>
+      <p>
+        Structural variant file with columns:
+        <code>Sample_Id</code>, <code>Site1_Hugo_Symbol</code>,
+        <code>Site2_Hugo_Symbol</code>.
+      </p>
+    </section>
+
+    <!-- Related repos -->
+    <section class="mp-card tool-page-section mp-animate-in">
+      <h2>Related repositories</h2>
+      <div class="repo-list">
+        <div class="repo">
+          <a href="https://github.com/viktorlj/tissue-classifier" target="_blank" rel="noopener">
+            tissue-classifier
+          </a>
+          <span>Inference pipeline &amp; pre-trained model</span>
+        </div>
+        <div class="repo">
+          <span class="repo-private">
+            too-panelseq
+          </span>
+          <span>Training code &amp; evaluation <span class="tool-card-pill pill-soon">not yet public</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/">molpath.tools</a>
+        <a href="https://viktorljungstrom.com">Viktor Ljungström</a>
+        <a href="https://github.com/viktorlj">GitHub</a>
+      </div>
+      <p>
+        Built in Uppsala, Sweden. All tools are for research and clinical
+        decision support — not standalone diagnostics.
+      </p>
+    </footer>
+  </main>
+</Base>

@@ -14,16 +14,18 @@ export interface Tool {
   tagline: string;
   /** Longer clinical/technical description (2–3 sentences) */
   description: string;
-  /** Live tool URL */
-  url: string;
+  /** Live tool URL (external web app) */
+  url?: string;
+  /** Internal page path (e.g. '/tissue-classifier') for non-web tools */
+  page?: string;
   /** GitHub repository URL (omit if not public yet) */
   github?: string;
   /** Published manuscript DOI or URL (omit if not published yet) */
   manuscript?: string;
   /** Short domain/category label shown as a pill */
   category: string;
-  /** Status badge */
-  status: 'live' | 'beta' | 'coming-soon';
+  /** Tool type */
+  kind: 'web' | 'cli' | 'both';
 }
 
 export const tools: Tool[] = [
@@ -36,7 +38,7 @@ export const tools: Tool[] = [
     url: 'https://tumor-likelihood.molpath.tools/',
     github: 'https://github.com/viktorlj/tumor-likelihood-tool',
     category: 'Cancer genomics',
-    status: 'live',
+    kind: 'web',
   },
   {
     slug: 'ec-molsubtype',
@@ -47,7 +49,7 @@ export const tools: Tool[] = [
     url: 'https://ec-molsubtype.molpath.tools/',
     github: 'https://github.com/viktorlj/ec-molsubtype',
     category: 'Gynecologic pathology',
-    status: 'live',
+    kind: 'both',
   },
   {
     slug: 'max-overtime',
@@ -58,7 +60,7 @@ export const tools: Tool[] = [
     url: 'https://max-overtime.molpath.tools/',
     github: 'https://github.com/viktorlj/max-overtime',
     category: 'NGS analysis',
-    status: 'live',
+    kind: 'web',
   },
   {
     slug: 'alascca-classify',
@@ -69,6 +71,27 @@ export const tools: Tool[] = [
     url: 'https://alascca-classify.molpath.tools/',
     github: 'https://github.com/viktorlj/alascca-classify',
     category: 'Colorectal cancer',
-    status: 'live',
+    kind: 'both',
+  },
+  {
+    slug: 'vcf2maf-py',
+    name: 'vcf2maf-py',
+    tagline: 'Pure-Python VCF-to-MAF converter',
+    description:
+      'Python reimplementation of the MSK vcf2maf tool. Converts VEP- or SnpEff-annotated VCFs to MAF v2.4 format with effect prioritization, multi-allelic splitting, and broad caller support. No Perl or C dependencies — install via pip.',
+    github: 'https://github.com/viktorlj/vcf2maf-py',
+    category: 'NGS utilities',
+    kind: 'cli',
+  },
+  {
+    slug: 'tissue-classifier',
+    name: 'Tissue-of-Origin Classifier',
+    tagline: 'Predict tumor primary site from panel sequencing',
+    description:
+      'Single-sample tissue-of-origin inference using an AutoGluon ensemble trained on AACR GENIE v18 data. Classifies 22 tumor types from mutations, copy-number, structural variants, and clinical features with 85% balanced accuracy.',
+    page: '/tissue-classifier',
+    github: 'https://github.com/viktorlj/tissue-classifier',
+    category: 'Cancer genomics',
+    kind: 'cli',
   },
 ];
