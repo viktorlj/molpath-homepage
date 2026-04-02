@@ -74,6 +74,17 @@ export const tools: Tool[] = [
     kind: 'both',
   },
   {
+    slug: 'two-hit',
+    name: 'Two-Hit',
+    tagline: 'Biallelic inactivation and mutation–amplification analysis',
+    description:
+      'Integrates MAF and SEG files to identify biallelic tumor suppressor inactivation (compound het, mutation + LOH, homozygous deletion) and oncogene mutation-with-amplification. Reports per-gene classifications with confidence levels using the OncoKB cancer gene list.',
+    url: 'https://two-hit.molpath.tools/',
+    github: 'https://github.com/viktorlj/two-hit',
+    category: 'Cancer genomics',
+    kind: 'both',
+  },
+  {
     slug: 'vcf2maf-py',
     name: 'vcf2maf-py',
     tagline: 'Pure-Python VCF-to-MAF converter',
