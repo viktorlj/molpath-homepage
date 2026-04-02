@@ -99,7 +99,7 @@ export const tools: Tool[] = [
     name: 'Tissue-of-Origin Classifier',
     tagline: 'Predict tumor primary site from panel sequencing',
     description:
-      'Single-sample tissue-of-origin inference using an AutoGluon ensemble trained on AACR GENIE v18 data. Classifies 22 tumor types from mutations, copy-number, structural variants, and clinical features with 83% balanced accuracy.',
+      'Single-sample tissue-of-origin inference using an AutoGluon ensemble trained on AACR GENIE v18 data. Classifies 22 tumor types from mutations, copy-number, structural variants, and clinical features with 83% accuracy.',
     page: '/tissue-classifier',
     github: 'https://github.com/viktorlj/tissue-classifier',
     category: 'Cancer genomics',
