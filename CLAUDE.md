@@ -68,7 +68,7 @@ Google Cloud Run with a static server, etc.). The site is configured for
 
 - Tool descriptions are clinical/technical, aimed at pathologists and bioinformaticians
 - Every tool card includes: name, category pill, status pill, tagline, description, links
-- Disclaimer in footer: tools are for research and clinical decision support, not standalone diagnostics
+- Disclaimer in footer: tools are for research use and clinical decision support only, are not standalone diagnostic devices, require expert review, and disclaim responsibility for clinical decisions or other consequences of use
 - Link to viktorljungstrom.com and GitHub profile in footer
 
 ## Future additions
